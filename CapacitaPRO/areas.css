@@ -1,0 +1,128 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+
+    /* FUNDO IGUAL AO DA IMAGEM */
+    background: linear-gradient(135deg, #0f2a5f, #1e5fa8, #2bb7a8, #5edc8b);
+}
+
+/* CONTAINER */
+.container {
+    display: flex;
+}
+
+/* MENU LATERAL */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    padding: 20px;
+
+    /* leve transparência pra combinar com o fundo */
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    color: white;
+}
+
+.sidebar h2 {
+    color: #a8ffdf;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 10px;
+    margin: 5px 0;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.sidebar li:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* CONTEÚDO */
+.main {
+    flex: 1;
+    padding: 30px;
+    margin: 20px;
+
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(15px);
+
+    border-radius: 15px;
+    color: white;
+}
+
+/* CARDS */
+.cards {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    flex: 1;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* CURSOS */
+.course {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* BARRA DE PROGRESSO */
+.progress {
+    height: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.progress-bar {
+    height: 10px;
+    border-radius: 5px;
+}
+
+/* cores alinhadas ao degradê */
+.green {
+    background: linear-gradient(90deg, #2bb7a8, #5edc8b);
+    width: 70%;
+}
+
+.blue {
+    background: linear-gradient(90deg, #1e5fa8, #2bb7a8);
+    width: 50%;
+}
+
+/* BOTÃO */
+.button {
+    background: linear-gradient(90deg, #1e5fa8, #2bb7a8);
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.button:hover {
+    opacity: 0.8;
+}

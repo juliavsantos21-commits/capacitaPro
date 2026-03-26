@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>CapacitaPro - Treinamentos</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(120deg, #1e3c72, #2a5298);
+}
+
+.container {
+    display: flex;
+}
+
+/* MENU LATERAL */
+.sidebar {
+    width: 220px;
+    background: #f4f6f9;
+    height: 100vh;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    color: #2a5298;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 10px;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.sidebar li:hover {
+    background: #dfe6f1;
+    border-radius: 5px;
+}
+
+/* CONTEÚDO */
+.main {
+    flex: 1;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 15px 0 0 15px;
+}
+
+/* CARDS */
+.cards {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    flex: 1;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+}
+
+.card:nth-child(1) {
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+}
+
+.card:nth-child(2) {
+    background: linear-gradient(45deg, #56ab2f, #a8e063);
+}
+
+.card:nth-child(3) {
+    background: linear-gradient(45deg, #00c9a7, #00b4d8);
+}
+
+/* TREINAMENTOS */
+.course {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.progress {
+    height: 10px;
+    background: #ddd;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.progress-bar {
+    height: 10px;
+    border-radius: 5px;
+}
+
+.green { background: #4caf50; width: 70%; }
+.blue { background: #2196f3; width: 50%; }
+
+.button {
+    background: #2a5298;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- MENU -->
+    <div class="sidebar">
+        <h2>CapacitaPro</h2>
+        <ul>
+            <li>Início</li>
+            <li>Treinamentos</li>
+            <li>Áreas</li>
+            <li>Avaliações</li>
+            <li>Materiais</li>
+            <li>Configurações</li>
+        </ul>
+    </div>
+
+    <!-- CONTEÚDO -->
+    <div class="main">
+        <h1>Treinamentos</h1>
+        <p>Selecione uma área para visualizar a lista de treinamentos</p>
+
+        <!-- CARDS -->
+        <div class="cards">
+            <div class="card">
+                <h3>Técnico</h3>
+                <p>8 treinamentos cadastrados</p>
+            </div>
+
+            <div class="card">
+                <h3>Operacional</h3>
+                <p>5 treinamentos cadastrados</p>
+            </div>
+
+            <div class="card">
+                <h3>Administrativo</h3>
+                <p>6 treinamentos cadastrados</p>
+            </div>
+        </div>
+
+        <!-- CURSOS -->
+        <h2>Meus treinamentos em andamento</h2>
+
+        <div class="course">
+            <h3>Primeiros Socorros</h3>
+            <div class="progress">
+                <div class="progress-bar green"></div>
+            </div>
+            <button class="button">Continuar

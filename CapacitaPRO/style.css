@@ -1,16 +1,26 @@
+/* Importação de fonte moderna */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
 /* =========================================
    VARIÁVEIS GERAIS
 ========================================= */
 :root {
-    /* Cores de Fundo / Gradiente */
+    /* Cores do Gradiente da Imagem (Auth e Destaques) */
+    --color-blue-deep: #004aad;
+    --color-cyan: #00d4ff;
+    --color-green-vibrant: #2af598;
+
+    /* Cores de Fundo / Gradiente (Sistema) */
     --bg-gradient-start: #0a1930;
     --bg-gradient-end: #0c4a6e;
     
-    /* Cores Primárias */
+    /* Cores Primárias (Sistema) */
     --blue-primary: #1d4ed8;
     --blue-light: #3b82f6;
     --green-primary: #16a34a;
     --green-light: #22c55e;
+    --green-logo: #6BCB52;
     
     /* Textos e Superfícies */
     --text-white: #ffffff;
@@ -18,9 +28,10 @@
     --text-dark: #1e293b;
     --text-muted: #64748b;
     --bg-card: rgba(255, 255, 255, 0.95);
+    --bg-glass: rgba(255, 255, 255, 0.15);
     
     /* Tipografia */
-    --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-main: 'Poppins', 'Montserrat', sans-serif;
 }
 
 /* =========================================
@@ -33,13 +44,27 @@
     font-family: var(--font-main);
 }
 
+/* Base padrão (para o sistema) */
 body {
-    /* Fundo base - transição suave de azul para verde */
+    background-color: #0b4b8a;
     background: linear-gradient(135deg, #113f8c 0%, #17b3d9 50%, #5ce570 100%);
     color: var(--text-white);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+/* Fundo específico para a página de Autenticação */
+body.auth-page {
+    background: linear-gradient(135deg, var(--color-blue-deep) 0%, var(--color-cyan) 50%, var(--color-green-vibrant) 100%);
+    background-attachment: fixed;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row; /* Reseta o column do body padrão para centralizar o card */
+}
+
+a {
+    text-decoration: none;
 }
 
 .container {
@@ -48,46 +73,198 @@ body {
     padding: 0 20px 40px 20px;
 }
 
+/* Fundo Alternativo com Gradiente Complexo */
+.background-wrapper {
+    background: 
+        radial-gradient(circle at 15% 50%, rgba(0, 150, 255, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 85% 30%, rgba(100, 255, 150, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 50% 80%, rgba(50, 200, 200, 0.4) 0%, transparent 50%),
+        linear-gradient(135deg, #022066 0%, #177aa0 40%, #56b87b 80%, #a8e063 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding-bottom: 50px;
+}
+
 /* =========================================
-   COMPONENTES GERAIS (Botões)
+   PÁGINA DE AUTENTICAÇÃO (CADASTRO/LOGIN)
 ========================================= */
-.btn {
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    border: none;
+.auth-wrapper {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+}
+
+/* Efeito de Vidro (Compartilhado com Cards do Sistema) */
+.glass-card {
+    background: var(--bg-glass);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    color: white;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+/* Layout específico do card de auth */
+.auth-page h1 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
     font-weight: 600;
+}
+
+.auth-page p {
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+/* Estilização dos Inputs (Auth) */
+.input-group {
+    position: relative;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-green-vibrant);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    outline: none;
+    color: white;
+    transition: 0.3s;
+}
+
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.input-group input:focus {
+    border-color: var(--color-green-vibrant);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(42, 245, 152, 0.2);
+}
+
+/* Botão Principal (Auth) */
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: var(--color-green-vibrant);
+    color: var(--color-blue-deep);
+    font-weight: 600;
+    font-size: 1rem;
     cursor: pointer;
     transition: 0.3s;
-   
+    margin-top: 10px;
 }
 
-.btn-blue {
-    background-color: var(--blue-primary);
+.btn-submit:hover {
+    background: var(--color-cyan);
     color: white;
+    transform: translateY(-2px);
 }
 
-.btn-blue:hover {
-    background-color: var(--blue-light);
+/* Divisor e Redes Sociais (Auth) */
+.separator {
+    margin: 25px 0;
+    display: flex;
+    align-items: center;
+    font-size: 0.7rem;
+    opacity: 0.7;
 }
 
-.btn-green {
-    background-color: var(--green-primary);
+.separator::before, .separator::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 0 10px;
+}
+
+.social-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.btn-social {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
     color: white;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
-.btn-green:hover {
-    background-color: var(--green-light);
+.btn-social:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.footer {
+    font-size: 0.85rem;
+    margin-top: 20px;
+}
+
+.footer a {
+    color: var(--color-green-vibrant);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+    color: var(--color-cyan);
 }
 
 /* =========================================
-   CABEÇALHO (NAVBAR)
+   CABEÇALHOS E NAVBARS
 ========================================= */
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centralizado por padrão, ajustado na navbar */
+    gap: 10px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 20px;
+}
+
+/* Na navbar, o logo não deve ter margem inferior */
+header .logo { margin-bottom: 0; }
+.auth-page .logo { text-align: center; }
+
+.logo i { color: var(--color-cyan); }
+.logo-pro { color: var(--color-green-vibrant); }
+
+/* Navbar Estilo 1 (Interno/Painel) */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.2rem 4rem;
-    background: rgba(255, 255, 255, 0.05); /* Fundo sutil para funcionar em ambas as telas */
+    background: rgba(255, 255, 255, 0.05);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -99,18 +276,17 @@ body {
 
 .logo-icon i {
     font-size: 2rem;
-    color: #38bdf8;
+    color: var(--color-cyan);
 }
 
 .logo-text h1 {
     font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: 0.5px;
+    margin-bottom: 0; /* Reset do card auth */
 }
 
-.logo-text span {
-    color: #38bdf8;
-}
+.logo-text span { color: var(--color-cyan); }
 
 .logo-text small {
     display: block;
@@ -126,7 +302,6 @@ body {
 
 .nav-links a {
     color: var(--text-gray);
-    text-decoration: none;
     font-size: 0.95rem;
     transition: color 0.3s;
     padding-bottom: 5px;
@@ -138,7 +313,46 @@ body {
     border-bottom: 2px solid var(--text-white);
 }
 
-/* Elementos do Navbar (Página Inicial) */
+/* Navbar Estilo 2 (Landing Page) */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+}
+
+header .logo-text span {
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+    color: #ffffff;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+nav a {
+    color: #ffffff;
+    font-size: 0.95rem;
+    transition: 0.3s;
+}
+
+nav a:hover, nav a.active {
+    font-weight: 600;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+/* =========================================
+   AÇÕES DO USUÁRIO E BUSCA (NAVBAR)
+========================================= */
 .nav-actions {
     display: flex;
     align-items: center;
@@ -163,11 +377,8 @@ body {
     font-size: 0.9rem;
 }
 
-.search-box input::placeholder {
-    color: rgba(255,255,255,0.6);
-}
+.search-box input::placeholder { color: rgba(255,255,255,0.6); }
 
-/* Elementos do Navbar (Página Interna / Perfil) */
 .user-profile {
     display: flex;
     align-items: center;
@@ -180,7 +391,7 @@ body {
     cursor: pointer;
 }
 
-.notification .badge {
+.notification .badge-alert {
     position: absolute;
     top: -2px;
     right: -2px;
@@ -188,6 +399,7 @@ body {
     height: 8px;
     background-color: #ef4444;
     border-radius: 50%;
+    padding: 0;
 }
 
 .profile-info {
@@ -204,12 +416,114 @@ body {
     object-fit: cover;
 }
 
-.user-name {
+.user-name { font-size: 0.9rem; }
+
+/* =========================================
+   BOTÕES GERAIS DO SISTEMA
+========================================= */
+.btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
     font-size: 0.9rem;
 }
 
+.btn-blue { background-color: var(--blue-primary); color: white; }
+.btn-blue:hover { background-color: var(--blue-light); }
+
+.btn-green { background-color: var(--green-primary); color: white; }
+.btn-green:hover { background-color: var(--green-light); }
+
+.btn-green-large {
+    background-color: var(--green-primary);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-green-glow {
+    background-color: var(--green-primary);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(22, 163, 74, 0.4);
+}
+
+.btn-green-glow:hover {
+    background-color: var(--green-light);
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.6);
+}
+
+.btn-outline {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+}
+.btn-outline:hover { background: rgba(255, 255, 255, 0.2); }
+
+.btn-solid {
+    background: var(--color-green-vibrant);
+    color: var(--color-blue-deep);
+    box-shadow: 0 4px 15px rgba(42, 245, 152, 0.4);
+}
+.btn-solid:hover { background: var(--color-cyan); color: white;}
+
+.btn-solid-large {
+    display: inline-block;
+    background: linear-gradient(to right, var(--color-green-vibrant), #85D65A);
+    color: var(--color-blue-deep);
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(42, 245, 152, 0.5);
+    transition: transform 0.2s;
+}
+.btn-solid-large:hover { transform: translateY(-2px); color: white;}
+
+.btn-primary {
+    flex: 1;
+    background-color: var(--blue-primary);
+    color: white;
+    border: none;
+    padding: 0.7rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-primary:hover { background-color: var(--blue-light); }
+
+.btn-secondary {
+    background-color: #f1f5f9;
+    color: var(--text-muted);
+    border: 1px solid #e2e8f0;
+    padding: 0.7rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.btn-secondary:hover { background-color: #e2e8f0; }
+
 /* =========================================
-   PÁGINA INICIAL (HERO E CTA)
+   SEÇÕES HERO
 ========================================= */
 .hero-section {
     display: flex;
@@ -217,10 +531,6 @@ body {
     align-items: center;
     padding: 4rem 4rem;
     flex: 1;
-}
-
-.hero-content {
-    max-width: 600px;
 }
 
 .badge {
@@ -272,24 +582,11 @@ body {
     outline: none;
     font-size: 1rem;
     color: #333;
+    padding: 0; /* Reset */
+    background: transparent; /* Reset */
 }
 
-.input-wrapper .search-icon {
-    color: #94a3b8;
-}
-
-.btn-green-large {
-    background-color: var(--green-primary);
-    color: white;
-    padding: 1rem 1.5rem;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-}
+.input-wrapper .search-icon { color: #94a3b8; }
 
 .features-list {
     list-style: none;
@@ -306,9 +603,7 @@ body {
     color: #cbd5e1;
 }
 
-.features-list li i {
-    color: var(--green-light);
-}
+.features-list li i { color: var(--color-green-vibrant); }
 
 .hero-image-area {
     flex: 1;
@@ -323,6 +618,60 @@ body {
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
 }
 
+/* Hero Estilo 2 */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.hero-content h2 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.hero-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 90%;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.hero-image img {
+    max-width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================================
+   SEÇÕES GERAIS E COMPONENTES
+========================================= */
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #0b4b8a;
+    margin: 60px 0 40px;
+    font-weight: 700;
+}
+
+/* Banners CTA */
 .cta-banner {
     background: linear-gradient(to right, #0f172a, #1e3a8a);
     margin: 2rem 4rem 4rem 4rem;
@@ -356,29 +705,66 @@ body {
 .cta-text p {
     color: #cbd5e1;
     font-size: 0.95rem;
+    margin-bottom: 0; /* Reset */
 }
 
-.btn-green-glow {
-    background-color: var(--green-primary);
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    font-size: 1.1rem;
+.final-cta {
+    text-align: center;
+    margin-top: 80px;
+    padding: 0 5%;
+}
+
+.final-cta h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #0b4b8a;
+    line-height: 1.4;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+/* Steps (Como Funciona) */
+.steps-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    color: #0b4b8a;
+}
+
+.step {
     display: flex;
     align-items: center;
     gap: 10px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(22, 163, 74, 0.4);
 }
 
-.btn-green-glow:hover {
-    background-color: var(--green-light);
-    box-shadow: 0 0 20px rgba(34, 197, 94, 0.6);
+.step-number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.active-step {
+    background-color: var(--color-green-vibrant);
+    color: var(--color-blue-deep);
+}
+
+.step-text { font-weight: 500; }
+
+.step-arrow {
+    color: rgba(11, 75, 138, 0.5);
+    font-size: 0.8rem;
 }
 
 /* =========================================
-   PÁGINA DE CURSOS (FILTROS E CARDS)
+   PÁGINA DE CURSOS E FILTROS
 ========================================= */
 .page-header {
     margin-top: 2rem;
@@ -394,6 +780,7 @@ body {
     color: #e2e8f0;
     font-size: 1rem;
     line-height: 1.5;
+    margin-bottom: 0; /* Reset */
 }
 
 .filter-bar {
@@ -443,6 +830,10 @@ body {
     background-size: 0.65rem auto;
 }
 
+.sort-box select {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
 .search-group {
     display: flex;
     gap: 10px;
@@ -463,11 +854,11 @@ body {
     outline: none;
     width: 200px;
     color: var(--text-dark);
+    background: transparent;
+    padding: 0;
 }
 
-.search-input i {
-    color: #94a3b8;
-}
+.search-input i { color: #94a3b8; }
 
 .btn-clear {
     background: transparent;
@@ -480,6 +871,75 @@ body {
     align-items: center;
 }
 
+/* =========================================
+   CARDS E GRIDS DO SISTEMA
+========================================= */
+.cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 0 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Glass Card Variante Sistema */
+.system-glass-card {
+    flex: 1;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    padding: 40px 20px;
+    text-align: center;
+    color: #0b4b8a;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.system-glass-card:hover { transform: translateY(-5px); }
+
+.system-glass-card .icon-wrapper i {
+    font-size: 3rem;
+    color: var(--color-cyan);
+    margin-bottom: 20px;
+}
+
+.system-glass-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.system-glass-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+/* Stats Cards */
+.stats-container .stat-card {
+    padding: 30px 20px;
+}
+
+.stats-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.stats-container h3 span {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.stars {
+    color: #FFD700;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+}
+
+/* Course Grid Cards */
 .course-list-header {
     display: flex;
     justify-content: space-between;
@@ -492,13 +952,7 @@ body {
     font-weight: 400;
 }
 
-.course-list-header h3 span {
-    font-weight: 700;
-}
-
-.sort-box select {
-    background-color: rgba(255, 255, 255, 0.9);
-}
+.course-list-header h3 span { font-weight: 700; }
 
 .course-grid {
     display: grid;
@@ -521,6 +975,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--color-blue-deep); /* Fundo padrão para imgs de curso */
+    color: white;
 }
 
 .icon-large {
@@ -596,39 +1052,6 @@ body {
     margin-top: auto;
 }
 
-.btn-primary {
-    flex: 1;
-    background-color: var(--blue-primary);
-    color: white;
-    border: none;
-    padding: 0.7rem;
-    border-radius: 6px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn-primary:hover {
-    background-color: var(--blue-light);
-}
-
-.btn-secondary {
-    background-color: #f1f5f9;
-    color: var(--text-muted);
-    border: 1px solid #e2e8f0;
-    padding: 0.7rem 1rem;
-    border-radius: 6px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.btn-secondary:hover {
-    background-color: #e2e8f0;
-}
-
 /* =========================================
    RESPONSIVIDADE (MEDIA QUERIES)
 ========================================= */
@@ -637,20 +1060,48 @@ body {
         flex-direction: column;
         align-items: stretch;
     }
+    
     .filter-group, .search-group {
         flex-wrap: wrap;
     }
+    
     .search-input input {
         width: 100%;
     }
+    
     .hero-section {
         flex-direction: column;
         text-align: center;
         padding: 3rem 2rem;
     }
+    
     .hero-image-area {
         margin-top: 3rem;
         justify-content: center;
+    }
+}
+
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .cards-container {
+        flex-direction: column;
+    }
+    
+    nav ul {
+        display: none;
+    }
+    
+    .steps-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .step-arrow {
+        transform: rotate(90deg);
     }
 }
 
@@ -659,19 +1110,32 @@ body {
         padding: 1rem;
         flex-wrap: wrap;
     }
+    
     .nav-links {
         order: 3;
         width: 100%;
         justify-content: center;
         margin-top: 1rem;
     }
+    
     .cta-banner {
         flex-direction: column;
         text-align: center;
         gap: 1.5rem;
         margin: 2rem;
     }
+    
     .cta-left {
         flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .glass-card {
+        padding: 30px 20px;
+    }
+    
+    .logo {
+        font-size: 1.6rem;
     }
 }

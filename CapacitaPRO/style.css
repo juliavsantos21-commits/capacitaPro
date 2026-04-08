@@ -723,28 +723,29 @@ body.login-body {
     border: none;
     border-radius: 
 }
-    .form-links p { font-size: 0.9rem; margin-top: 15px; }
+
+.form-links p { font-size: 0.9rem; margin-top: 15px; }
 .link-highlight { font-size: 1.1rem; font-weight: 600; color: var(--text-white); display: inline-block; margin-top: 5px; }
 .link-highlight:hover { color: var(--color-green-vibrant); }
 
 .login-right { position: relative; }
 .glass-panel-light {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    border-radius: 24px;
-    border: 1px solid rgba(255,255,255,0.2);
+     background: rgba(255, 255, 255, 0.1);
+     padding: 15px;
+     border-radius:24px;
+     border: 1px solid rgba(255,255,255,0.2);
 }
 .hero-image { width: 100%; border-radius: 16px; display: block; }
 
 .floating-badge {
-    position: absolute;
-    top: 20%;
-    left: -20px;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 15px;
-    border-radius: 16px 16px 16px 0;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    backdrop-filter: blur(5px);
+     position: absolute;
+     top: 20%;
+     left: -20px;
+     background: rgba(255, 255, 255, 0.8);
+     padding: 15px;
+     border-radius: 16px 16px 16px 0;
+     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+     backdrop-filter: blur(5px);
 }
 .floating-badge i { color: #28a745; font-size: 2rem; }
 
@@ -756,39 +757,38 @@ body.login-body {
    RESPONSIVIDADE (MEDIA QUERIES)
 ========================================= */
 @media (max-width: 992px) {
-    .filter-bar { flex-direction: column; align-items: stretch; }
-    .filter-group, .search-group { flex-wrap: wrap; }
-    .search-input input { width: 100%; }
-    .hero-section { flex-direction: column; text-align: center; padding: 3rem 2rem; }
-    .hero-image-area { margin-top: 3rem; justify-content: center; }
+     .filter-bar { flex-direction: column; align-items: stretch; }
+     .filter-group, .search-group { flex-wrap: wrap; }
+     .search-input input { width: 100%; }
+     .hero-section { flex-direction: column; text-align: center; padding: 3rem 2rem; }
+     .hero-image-area { margin-top: 3rem; justify-content: center; }
 }
 
 @media (max-width: 900px) {
-    .hero, .hero-grid { flex-direction: column; text-align: center; grid-template-columns: 1fr; }
-    .cards-container, .contact-form { flex-direction: column; grid-template-columns: 1fr; }
-    nav ul, .nav-links { display: none; }
-    .steps-container { flex-direction: column; gap: 20px; }
-    .step-arrow { transform: rotate(90deg); }
-    .full-width { grid-column: span 1; }
-    
-    /* Cadastro - Mobile */
-    .step-grid { grid-template-columns: 1fr; }
-    .course-cards-wrapper { grid-template-columns: 1fr; }
-    .form-row, .info-grid { grid-template-columns: 1fr; }
-    .goal-selector { flex-direction: column; text-align: center; gap: 15px; }
-    .goal-selector .glass-select { width: 100%; }
-    .progress-bar { flex-wrap: wrap; justify-content: center; }
+     .hero, .hero-grid { flex-direction: column; text-align: center; grid-template-columns: 1fr; }
+     .cards-container, .contact-form { flex-direction: column; grid-template-columns: 1fr; }
+     nav ul, .nav-links { display: none; }
+     .steps-container { flex-direction: column; gap: 20px; }
+     .step-arrow { transform: rotate(90deg); }
+     .full-width { grid-column: span 1; }
+ /* Cadastro - Mobile */
+     .step-grid { grid-template-columns: 1fr; }
+     .course-cards-wrapper { grid-template-columns: 1fr; }
+     .form-row, .info-grid { grid-template-columns: 1fr; }
+     .goal-selector { flex-direction: column; text-align: center; gap: 15px; }
+     .goal-selector .glass-select { width: 100%; }
+     .progress-bar { flex-wrap: wrap; justify-content: center; }
 
-    /* Login - Mobile (Inserido) */
-    .login-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
-    .login-subtitle { margin: 0 auto 30px; }
-    .form-card { margin: 0 auto; }
-    .login-right { display: none; }
+/* Login - Mobile (Inserido) */
+     .login-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+     .login-subtitle { margin: 0 auto 30px; }
+     .form-card { margin: 0 auto; }
+     .login-right { display: none; }
 }
 
 @media (max-width: 768px) {
-    .navbar { padding: 1rem; flex-wrap: wrap; }
-    .nav-links { order: 3; width: 100%; justify-content: center; margin-top: 1rem; display: flex; }
-    .cta-banner { flex-direction: column; text-align: center; gap: 1.5rem; margin: 2rem; }
-    .cta-left { flex-direction: column; }
+     .navbar { padding: 1rem; flex-wrap: wrap; }
+     .nav-links { order: 3; width: 100%; justify-content: center; margin-top: 1rem; display: flex; }
+     .cta-banner { flex-direction: column; text-align: center; gap: 1.5rem; margin: 2rem; }
+     .cta-left { flex-direction: column; }
 }

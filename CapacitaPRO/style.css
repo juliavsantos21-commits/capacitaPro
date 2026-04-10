@@ -137,60 +137,52 @@ a {
 .system-glass-card p { font-size: 0.95rem; line-height: 1.5; margin-bottom: 0; }
 
 /* =========================================
-   CABEÇALHOS E NAVBARS (UNIFICADO)
+   CABEÇALHOS E NAVBARS (UNIFICADO - ATUALIZADO)
 ========================================= */
 
 /* Aplica o estilo a qualquer header ou elemento com classe .navbar */
 header, .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Mantém o logo na esquerda e o menu (se houver) na direita */
     align-items: center;
-    padding: 1.2rem 5%;
-    background: rgba(255, 255, 255, 0.05);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px 5%;
+    /* NOVO FUNDO AZUL (Igual à imagem 2) */
+    background: linear-gradient(90deg, #2b589f 0%, #3583c4 100%);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15); /* Leve sombra para destacar */
     width: 100%;
     z-index: 1000;
+    position: sticky; /* Opcional: mantém o cabeçalho no topo ao rolar */
+    top: 0;
 }
 
-/* Configuração do Logo */
+/* =========================================
+   CONFIGURAÇÃO DO LOGO
+========================================= */
 .logo, .logo-container {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--text-white);
+    flex-direction: column; /* Coloca o subtítulo embaixo da imagem */
+    align-items: flex-start; /* Mantém sempre alinhado à esquerda */
     text-decoration: none;
+    cursor: pointer;
 }
 
-/* Centraliza o logo se estiver na página de auth */
-.auth-page header, .auth-page .navbar {
-    justify-content: center;
+.header-logo-img {
+    height: 35px; /* Altura controlada para não quebrar a barra */
+    width: auto;
+    margin-bottom: 2px;
 }
 
-.logo i, .logo-icon i, .logo-icon { 
-    color: var(--color-cyan); 
-    font-size: 2rem; 
-}
-.logo-pro { color: var(--color-green-vibrant); }
-
-.logo-text h1 { 
-    font-size: 1.5rem; 
-    font-weight: 700; 
-    letter-spacing: 0.5px; 
-    margin-bottom: 0; 
-    line-height: 1; 
-}
-.logo-text span { color: var(--color-green-vibrant); }
-.logo-text small { 
-    display: block; 
-    font-size: 0.6rem; 
-    color: #94a3b8; 
-    letter-spacing: 1px; 
-    opacity: 0.8;
+.header-subtitle {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 1px;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
-/* Configuração dos Links de Navegação */
+/* =========================================
+   LINKS DE NAVEGAÇÃO E MENUS
+========================================= */
 nav ul, .nav-links {
     display: flex;
     gap: 2rem;
@@ -201,7 +193,8 @@ nav ul, .nav-links {
 }
 
 nav a, .nav-links a {
-    color: var(--text-gray);
+    /* Cor clareada para dar contraste com o fundo azul */
+    color: rgba(255, 255, 255, 0.85); 
     font-size: 0.95rem;
     font-weight: 500;
     transition: 0.3s;
@@ -212,12 +205,13 @@ nav a, .nav-links a {
 /* Efeito Hover e Ativo */
 nav a:hover, nav a.active, 
 .nav-links a:hover, .nav-links a.active {
-    color: var(--text-white);
+    color: #ffffff; /* Fica 100% branco ao passar o mouse */
     font-weight: 700;
-    border-bottom: 2px solid var(--text-white);
+    border-bottom: 2px solid #ffffff;
 }
-
-/* Botões do Cabeçalho e Ações do Usuário */
+/* =========================================
+   BOTÕES DO CABEÇALHO E AÇÕES DO USUÁRIO
+========================================= */
 .header-buttons, .nav-actions { 
     display: flex; 
     align-items: center; 
@@ -228,6 +222,7 @@ nav a:hover, nav a.active,
     display: flex; 
     align-items: center; 
     gap: 1.5rem; 
+    color: #ffffff; /* Garante que ícones do usuário fiquem brancos */
 }
 
 .notification { 
@@ -235,13 +230,14 @@ nav a:hover, nav a.active,
     font-size: 1.2rem; 
     cursor: pointer; 
 }
+
 .notification .badge-alert {
     position: absolute; 
     top: -2px; 
     right: -2px;
     width: 8px; 
     height: 8px; 
-    background-color: #ef4444;
+    background-color: #ef4444; /* Vermelho do alerta */
     border-radius: 50%; 
     padding: 0;
 }
@@ -252,13 +248,19 @@ nav a:hover, nav a.active,
     gap: 10px; 
     cursor: pointer; 
 }
+
 .avatar { 
     width: 35px; 
     height: 35px; 
     border-radius: 50%; 
     object-fit: cover; 
+    border: 2px solid rgba(255,255,255,0.3); /* Bordinha sutil no avatar */
 }
-.user-name { font-size: 0.9rem; }
+
+.user-name { 
+    font-size: 0.9rem; 
+    color: #ffffff;
+}
 
 /* =========================================
    BOTÕES

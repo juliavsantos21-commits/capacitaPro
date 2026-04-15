@@ -135,6 +135,28 @@ a {
 .system-glass-card .icon-wrapper i { font-size: 3rem; color: var(--color-cyan); margin-bottom: 20px; }
 .system-glass-card h3 { font-size: 1.3rem; margin-bottom: 15px; font-weight: 700; }
 .system-glass-card p { font-size: 0.95rem; line-height: 1.5; margin-bottom: 0; }
+/* =========================================
+   ALINHAMENTO DA LOGO NO CABEÇALHO
+========================================= */
+.logo {
+    display: flex !important;
+    flex-direction: row !important; /* Obriga a ficar um do LADO do outro */
+    align-items: center !important; /* Centraliza a altura da imagem com a do texto */
+    gap: 15px; /* Espaço entre a imagem e o texto */
+}
+
+.logo-icon {
+    width: 55px; /* Ajuste o tamanho da imagem aqui */
+    height: auto;
+    display: block;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
 
 /* =========================================
    CABEÇALHOS E NAVBARS (UNIFICADO - ATUALIZADO)
@@ -793,4 +815,5 @@ body.login-body {
      .nav-links { order: 3; width: 100%; justify-content: center; margin-top: 1rem; display: flex; }
      .cta-banner { flex-direction: column; text-align: center; gap: 1.5rem; margin: 2rem; }
      .cta-left { flex-direction: column; }
+     
 }

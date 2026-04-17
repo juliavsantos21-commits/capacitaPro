@@ -15,7 +15,6 @@
         <header>
             <div class="logo">
                 <img src="png.logo.png" alt="Ícone CapacitaPro" class="logo-icon">
-                
                 <div class="logo-text">
                     <h1>CapacitaPro</h1>
                     <span>TREINAMENTOS PROFISSIONAIS</span>
@@ -24,51 +23,43 @@
             
             <nav>
                 <ul>
-                    <li><a href="#">Início</a></li>
-                    <li><a href="#">Cursos</a></li>
-                    <li><a href="#">Sobre</a></li>
-                    <li><a href="#" class="active">Contato</a></li>
+                    <li><a href="inicio.html">Início</a></li>
+                    <li><a href="cursos.html">Cursos</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                    <li><a href="contato.html" class="active">Contato</a></li>
                 </ul>
             </nav>
 
             <div class="header-buttons">
-                <a href="#" class="btn btn-outline">Entrar</a>
-                <a href="#" class="btn btn-solid">Cadastrar-se</a>
+                <a href="login.html" class="btn btn-outline">Entrar</a>
+                <a href="cadastro.html" class="btn btn-solid">Cadastrar-se</a>
             </div>
         </header>
 
         <main class="container">
             <section class="form-section">
                 <h2 class="section-title">Entre em Contato</h2>
-                <p class="section-subtitle">Caso não encontre a resposta que procura, envie-nos uma mensagem. Estamos aqui para te ajudar!</p>
-                
                 <form class="contact-form">
                     <div class="input-group">
                         <label><i class="fas fa-check-circle"></i> Seu nome</label>
-                        <input type="text" class="glass-input" placeholder="">
+                        <input type="text" class="glass-input" required>
                     </div>
-                    
                     <div class="input-group">
                         <label><i class="fas fa-check-circle"></i> Seu e-mail</label>
-                        <input type="email" class="glass-input" placeholder="">
+                        <input type="email" class="glass-input" required>
                     </div>
-                    
                     <div class="input-group">
                         <label><i class="fas fa-check-circle"></i> Assunto</label>
-                        <input type="text" class="glass-input" placeholder="">
+                        <input type="text" class="glass-input" required>
                     </div>
-                    
                     <div class="input-group full-width">
-                        <textarea class="glass-input" placeholder="Mensagem" rows="4"></textarea>
-                        <button type="submit" class="btn-submit">
-                            </i> Enviar Mensagem
-                        </button>
+                        <textarea class="glass-input" rows="4" required></textarea>
+                        <button type="submit" class="btn-submit">Enviar Mensagem</button>
                     </div>
                 </form>
             </section>
         </main>
-
-    </div>
-
+        
+    </div> <script src="script.js"></script>
 </body>
 </html>

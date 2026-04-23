@@ -72,10 +72,6 @@
                 </div>
 
                 <div class="search-group">
-                    <div class="search-input">
-                        <input type="text" id="input-busca-v2" placeholder="Buscar curso...">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
                     <button id="btn-filtrar-v2" class="btn btn-green"><i class="fa-solid fa-play"></i> Filtrar</button>
                     <button id="btn-limpar-v2" class="btn-clear"><i class="fa-solid fa-eraser"></i> Limpar</button>
                 </div>
@@ -242,43 +238,6 @@
             </section>
         </main>
     </div>
-
-    <script>
-        console.log("Teste: O script abriu!");
-
-        // Função que roda assim que o botão é clicado
-        document.getElementById('btn-filtrar-v2').onclick = function() {
-            console.log("Botão filtrar clicado!");
-            
-            let area = document.getElementById('filter-area').value;
-            let nivel = document.getElementById('filter-nivel').value;
-            let status = document.getElementById('filter-status').value;
-            let busca = document.getElementById('input-busca-v2').value.toLowerCase();
-            
-            let cards = document.querySelectorAll('.course-card');
-            
-            cards.forEach(card => {
-                let cArea = card.getAttribute('data-area');
-                let cNivel = card.getAttribute('data-nivel');
-                let cStatus = card.getAttribute('data-status');
-                let cTexto = card.innerText.toLowerCase();
-                
-                let matchArea = (area === "all" || area === cArea);
-                let matchNivel = (nivel === "all" || nivel === cNivel);
-                let matchStatus = (status === "all" || status === cStatus);
-                let matchBusca = (busca === "" || cTexto.includes(busca));
-                
-                if(matchArea && matchNivel && matchStatus && matchBusca) {
-                    card.style.display = "block";
-                } else {
-                    card.style.display = "none";
-                }
-            });
-        };
-
-        document.getElementById('btn-limpar-v2').onclick = function() {
-            location.reload(); 
-        };
-    </script>
+<script src="script.js"></script>
 </body>
 </html>

@@ -6,6 +6,50 @@
     <title>Login - CapacitaPro</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+
+        // CONFIGURAÇÕES DO FIREBASE (SUBSTITUA PELAS SUAS)
+        const firebaseConfig = {
+            apiKey: "AIzaSyDEI41ng8XESC761m6ym3NiNCm4W9JvWmM",
+            authDomain: "capacitapro-d8a0c.firebaseapp.com",
+            projectId: "capacitapro-d8a0c",
+            storageBucket: "capacitapro-d8a0c.firebasestorage.app",
+            messagingSenderId: "202290974531",
+            appId: "1:202290974531:web:e611fbd9fbc196ca6d69f6"
+        };
+
+        // Inicializar Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+
+        // Função para login com Google
+        window.loginComGoogle = async function() {
+            try {
+                console.log("🔐 Abrindo popup do Google...");
+                const result = await signInWithPopup(auth, provider);
+                const user = result.user;
+                
+                alert(`✅ Bem-vindo(a), ${user.displayName}! Login realizado com sucesso.`);
+                console.log("Usuário logado:", user.email);
+                
+                // Redirecionar para página inicial
+                window.location.href = "inicio.html";
+            } catch (error) {
+                console.error("❌ Erro no login:", error);
+                
+                if (error.code === "auth/unauthorized-domain") {
+                    alert("Erro: Domínio não autorizado.\n\nSolução: No Firebase Console, vá em Authentication > Settings > Authorized domains e adicione: localhost");
+                } else {
+                    alert("Erro ao fazer login: " + error.message);
+                }
+            }
+        };
+    </script>
 </head>
 <body class="login-body">
 
@@ -47,26 +91,34 @@
                             </label>
                         </div>
 
-                      <button type="button" class="btn-green-block">Entrar</button>
+                        <button type="button" class="btn-green-block">Entrar</button>
+
+                        <!-- DIVISÓRIA -->
+                        <div class="separator-login" style="margin: 20px 0; text-align: center;">
+                            <span style="background: rgba(255,255,255,0.15); padding: 5px 15px; border-radius: 20px;">ou</span>
+                        </div>
+
+                        <!-- BOTÃO DO GOOGLE FUNCIONANDO -->
+                        <button type="button" class="btn-google-login" onclick="loginComGoogle()">
+                            <i class="fab fa-google"></i> Entrar com Google
+                        </button>
                     </form>
 
                     <div class="form-links">
-                        <div class="divider">
-                            <span>Esqueceu sua senha?</span>
+                        <div class="divider" style="text-align: center; margin: 15px 0;">
+                            <span style="color: rgba(255,255,255,0.7);">Esqueceu sua senha?</span>
                         </div>
-                        <p>Ainda não tem uma conta?</p>
-                        <p>Cadastrar-se</p>
+                        <p style="text-align: center;">Ainda não tem uma conta? <a href="cadastro.html" style="color: #2af598;">Cadastrar-se</a></p>
                     </div>
                 </div>
             </div>
         </div>
            
     </main>
-<footer class="login-footer">
-        <p>Ainda não tem uma conta?</p>
-        <p>Cadastrar-se</p>
+
+    <footer class="login-footer" style="text-align: center; padding: 20px;">
+        <p>Não tem uma conta? <a href="cadastro.html" style="color: #2af598;">Cadastre-se gratuitamente</a></p>
     </footer>
 
-    <script src="script.js"></script>
 </body>
 </html>

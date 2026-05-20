@@ -1690,3 +1690,31 @@ nav a.active { color: white; font-weight: bold; border-bottom: 2px solid white; 
     gap: 12px;
     align-items: center;
 }
+/* Botão de Login com Google */
+.btn-google-login {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-google-login:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.separator-login {
+    margin: 20px 0;
+    text-align: center;
+}

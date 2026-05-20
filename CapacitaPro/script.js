@@ -100,4 +100,61 @@ document.addEventListener("DOMContentLoaded", function() {
             window.location.href = "cursos.html";
         }
     });
+
+    // =============================================
+    // API DE LOGIN COM GOOGLE (FIREBASE) - FUNCIONANDO DE VERDADE
+    // =============================================
+    
+    // Verificar se está na página de login
+    if (window.location.href.includes("login.html")) {
+        // Importar Firebase dinamicamente
+        import('https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js')
+            .then(async (firebaseApp) => {
+                const firebaseAuth = await import('https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js');
+                
+                // Configurações do Firebase
+                const firebaseConfig = {
+                    apiKey: "AIzaSyDEI41ng8XESC761m6ym3NiNCm4W9JvWmM",
+                    authDomain: "capacitapro-d8a0c.firebaseapp.com",
+                    projectId: "capacitapro-d8a0c",
+                    storageBucket: "capacitapro-d8a0c.firebasestorage.app",
+                    messagingSenderId: "202290974531",
+                    appId: "1:202290974531:web:e611fbd9fbc196ca6d69f6"
+                };
+
+                // Inicializar Firebase
+                const app = firebaseApp.initializeApp(firebaseConfig);
+                const auth = firebaseAuth.getAuth(app);
+                const provider = new firebaseAuth.GoogleAuthProvider();
+
+                // Adicionar evento ao botão do Google (quando ele existir)
+                const verificarBotao = setInterval(() => {
+                    const btnGoogle = document.querySelector('.btn-google-login');
+                    if (btnGoogle) {
+                        clearInterval(verificarBotao);
+                        btnGoogle.addEventListener('click', async function(e) {
+                            e.preventDefault();
+                            try {
+                                console.log("🔐 Abrindo popup do Google...");
+                                const result = await firebaseAuth.signInWithPopup(auth, provider);
+                                const user = result.user;
+                                alert(`✅ Bem-vindo(a), ${user.displayName}! Login realizado com sucesso.`);
+                                console.log("Usuário logado:", user.email);
+                                window.location.href = "inicio.html";
+                            } catch (error) {
+                                console.error("❌ Erro no login:", error);
+                                if (error.code === "auth/unauthorized-domain") {
+                                    alert("Erro: Domínio não autorizado.\n\nSolução: No Firebase Console, vá em Authentication > Settings > Authorized domains e adicione: localhost");
+                                } else {
+                                    alert("Erro ao fazer login: " + error.message);
+                                }
+                            }
+                        });
+                    }
+                }, 100);
+            })
+            .catch(error => {
+                console.error("Erro ao carregar Firebase:", error);
+            });
+    }
 });

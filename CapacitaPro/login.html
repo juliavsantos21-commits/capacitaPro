@@ -7,12 +7,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     
-    <!-- Firebase SDKs -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
 
-        // CONFIGURAÇÕES DO FIREBASE (SUBSTITUA PELAS SUAS)
         const firebaseConfig = {
             apiKey: "AIzaSyDEI41ng8XESC761m6ym3NiNCm4W9JvWmM",
             authDomain: "capacitapro-d8a0c.firebaseapp.com",
@@ -22,28 +20,21 @@
             appId: "1:202290974531:web:e611fbd9fbc196ca6d69f6"
         };
 
-        // Inicializar Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const provider = new GoogleAuthProvider();
 
-        // Função para login com Google
         window.loginComGoogle = async function() {
             try {
                 console.log("🔐 Abrindo popup do Google...");
                 const result = await signInWithPopup(auth, provider);
                 const user = result.user;
-                
                 alert(`✅ Bem-vindo(a), ${user.displayName}! Login realizado com sucesso.`);
-                console.log("Usuário logado:", user.email);
-                
-                // Redirecionar para página inicial
-                window.location.href = "inicio.html";
+                window.location.href = "alunos.html";
             } catch (error) {
                 console.error("❌ Erro no login:", error);
-                
                 if (error.code === "auth/unauthorized-domain") {
-                    alert("Erro: Domínio não autorizado.\n\nSolução: No Firebase Console, vá em Authentication > Settings > Authorized domains e adicione: localhost");
+                    alert("Erro: Domínio não autorizado. Adicione localhost no console do Firebase.");
                 } else {
                     alert("Erro ao fazer login: " + error.message);
                 }
@@ -64,26 +55,26 @@
     </header>
 
     <main class="login-main-container">
-        
         <div class="login-grid">
             <div class="login-left">
                 <h2 class="login-title">Faça seu Login</h2>
                 <p class="login-subtitle">Bem-vindo de volta! Insira suas informações para acessar sua conta.</p>
 
                 <div class="glass-panel form-card">
-                    <form>
-                        <div class="input-group">
+                    <form id="form-login-sistema" onsubmit="return false;">
+                        
+                        <div class="input-group" style="position: relative; z-index: 5;">
                             <i class="fas fa-envelope icon-left"></i>
-                            <input type="text" class="glass-input" placeholder="E-mail ou Número de Matrícula">
+                            <input type="text" id="login-usuario" class="glass-input" placeholder="E-mail ou Número de Matrícula" style="position: relative; z-index: 6;">
                         </div>
                         
-                        <div class="input-group">
+                        <div class="input-group" style="position: relative; z-index: 5; margin-top: 15px;">
                             <i class="fas fa-lock icon-left"></i>
-                            <input type="password" class="glass-input" placeholder="Senha">
-                            <i class="fas fa-eye icon-right"></i>
+                            <input type="password" id="login-senha" class="glass-input" placeholder="Senha" style="position: relative; z-index: 6; padding-right: 40px;">
+                            <i class="fas fa-eye icon-right" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); z-index: 7; cursor: pointer;"></i>
                         </div>
 
-                        <div class="checkbox-group">
+                        <div class="checkbox-group" style="margin-top: 15px;">
                             <label>
                                 <input type="checkbox" checked>
                                 <span class="custom-checkbox"><i class="fas fa-check"></i></span>
@@ -91,15 +82,13 @@
                             </label>
                         </div>
 
-                        <button type="button" class="btn-green-block">Entrar</button>
+                        <button type="button" id="btn-entrar-tradicional" class="btn-green-block" style="margin-top: 20px; position: relative; z-index: 10;">Entrar</button>
 
-                        <!-- DIVISÓRIA -->
                         <div class="separator-login" style="margin: 20px 0; text-align: center;">
                             <span style="background: rgba(255,255,255,0.15); padding: 5px 15px; border-radius: 20px;">ou</span>
                         </div>
 
-                        <!-- BOTÃO DO GOOGLE FUNCIONANDO -->
-                        <button type="button" class="btn-google-login" onclick="loginComGoogle()">
+                        <button type="button" class="btn-google-login" onclick="loginComGoogle()" style="position: relative; z-index: 10;">
                             <i class="fab fa-google"></i> Entrar com Google
                         </button>
                     </form>
@@ -113,12 +102,12 @@
                 </div>
             </div>
         </div>
-           
     </main>
 
     <footer class="login-footer" style="text-align: center; padding: 20px;">
         <p>Não tem uma conta? <a href="cadastro.html" style="color: #2af598;">Cadastre-se gratuitamente</a></p>
     </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>

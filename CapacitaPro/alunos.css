@@ -1,0 +1,531 @@
+/* ==========================================================
+   CONFIGURAÇÕES GERAIS E RESET
+   ========================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #F8FAFC; 
+    color: #1E293B;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- AS CORES EXATAS EXTRAÍDAS DO SEU ARQUIVO --- */
+:root {
+    --color-blue-deep: #004aad;
+    --color-cyan: #00d4ff;
+    --color-green-vibrant: #2af598;
+    
+    /* Cores de apoio para estrutura */
+    --text-dark: #0F172A;
+    --text-muted: #64748B;
+    --card-border: #E2E8F0;
+}
+
+/* ==========================================================
+   NAVBAR SUPERIOR (UTILIZANDO SEU AZUL #004aad)
+   ========================================================== */
+.navbar-portal {
+    background-color: var(--color-blue-deep); /* O seu azul escuro */
+    padding: 16px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #FFFFFF;
+}
+
+.logo-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-img {
+    width: 40px;
+    height: auto;
+}
+
+.brand-text h1 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.brand-text span {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    color: var(--color-cyan); /* O seu ciano */
+}
+
+.nav-menu ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--color-green-vibrant); /* Links ativos acendem no seu verde vibrante */
+}
+
+.nav-link.active {
+    border-bottom: 2px solid var(--color-green-vibrant);
+    padding-bottom: 4px;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.notification-trigger {
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.notification-trigger:hover {
+    color: var(--color-cyan);
+}
+
+.user-dropdown {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.avatar-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-cyan); /* Detalhes no seu ciano */
+}
+
+.user-name {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.user-name i {
+    font-size: 10px;
+    margin-left: 4px;
+    color: var(--color-green-vibrant);
+}
+
+/* ==========================================================
+   ESTRUTURA DO PORTAL / DASHBOARD
+   ========================================================== */
+.portal-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 40px 60px;
+}
+
+.welcome-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+}
+
+.welcome-header p {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.portal-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 30px;
+    align-items: start;
+}
+
+/* --- CARDS PADRÃO DO LAYOUT --- */
+.current-course-card, .course-content-block, .widget-panel {
+    background: #FFFFFF;
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+/* ==========================================================
+   CURSO ATUAL (CARD PRINCIPAL)
+   ========================================================== */
+.course-summary {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.icon-box-blue {
+    width: 70px;
+    height: 70px;
+    background-color: #EFF6FF; 
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    color: var(--color-blue-deep); /* Ícone com o seu azul */
+}
+
+.course-headline .sub-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.course-headline h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 2px 0;
+}
+
+.course-headline .meta-info {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.course-cta-group {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* --- BOTÕES DO PORTAL --- */
+.btn-portal-solid {
+    background-color: var(--color-green-vibrant); /* O seu verde vibrante nos botões */
+    color: var(--color-blue-deep); /* Texto em azul escuro para contraste e leitura perfeita */
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-portal-solid:hover {
+    background-color: var(--color-cyan); /* Transiciona para o seu ciano no hover */
+}
+
+.btn-portal-outline {
+    background: none;
+    color: var(--color-blue-deep);
+    border: 2px solid var(--color-blue-deep);
+    font-family: 'Montserrat', sans-serif;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-portal-outline:hover {
+    background-color: var(--color-blue-deep);
+    color: #FFFFFF;
+}
+
+/* --- BARRA DE PROGRESSO VERDE --- */
+.course-progress-wrapper {
+    border-top: 1px solid #F1F5F9;
+    padding-top: 16px;
+}
+
+.progress-txt {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #475569;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.progress-txt .percentage {
+    color: var(--color-blue-deep);
+    font-weight: 700;
+}
+
+.progress-track-bar {
+    background-color: #E2E8F0;
+    height: 8px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill-bar {
+    background-color: var(--color-green-vibrant); /* Preenchimento em verde vibrante */
+    height: 100%;
+    border-radius: 10px;
+}
+
+/* ==========================================================
+   LISTAGEM DOS MÓDULOS DO CURSO
+   ========================================================== */
+.course-content-block {
+    margin-top: 24px;
+}
+
+.block-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+}
+
+.module-row {
+    display: flex;
+    align-items: center;
+    padding: 14px 18px;
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.status-indicator {
+    font-size: 16px;
+    margin-right: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.module-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+}
+
+.badge {
+    margin-left: auto;
+    margin-right: 16px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 6px;
+}
+
+/* Mudanças de estados dos módulos com as suas cores */
+.module-row.approved .status-indicator { color: var(--color-green-vibrant); }
+.badge-success { background-color: #E6FDF4; color: #10B981; }
+
+.module-row.current-playing { background-color: #F8FAFC; border-color: var(--color-cyan); }
+.module-row.current-playing .status-indicator { color: var(--color-blue-deep); }
+.badge-process { background-color: #EFF6FF; color: var(--color-blue-deep); }
+
+.module-row.rest-locked { opacity: 0.55; }
+.module-row.rest-locked .status-indicator { color: #94A3B8; }
+.badge-lock { background-color: #F1F5F9; color: #64748B; }
+
+.toggle-icon {
+    color: #64748B;
+    font-size: 12px;
+}
+
+.info-footer-alert {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #EFF6FF;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-top: 16px;
+    color: var(--color-blue-deep);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.info-footer-alert i {
+    font-size: 16px;
+    color: var(--color-cyan);
+}
+
+/* ==========================================================
+   SIDEBAR (WIDGETS DA DIREITA)
+   ========================================================== */
+.right-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.widget-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.widget-header h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.text-green { color: var(--color-green-vibrant); }
+
+.class-schedule-box h5 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1E293B;
+}
+
+.schedule-time {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.btn-sidebar-outline-green {
+    width: 100%;
+    background: none;
+    border: 2px solid var(--color-green-vibrant);
+    color: var(--color-blue-deep);
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 14px;
+    transition: all 0.2s;
+}
+
+.btn-sidebar-outline-green:hover {
+    background-color: var(--color-green-vibrant);
+}
+
+.quick-nav-list {
+    list-style: none;
+}
+
+.quick-nav-list li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #475569;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 0;
+    border-bottom: 1px solid #F1F5F9;
+    transition: color 0.2s;
+}
+
+.quick-nav-list li a i.fa-style {
+    width: 24px;
+    color: var(--text-muted);
+}
+
+.quick-nav-list li a:hover {
+    color: var(--color-blue-deep);
+}
+
+.quick-nav-list li a .arrow-end {
+    margin-left: auto;
+    font-size: 10px;
+    color: #94A3B8;
+}
+
+/* --- CARD DE AJUDA COM SEU AZUL INSTITUCIONAL --- */
+.widget-panel.help-card-bg {
+    background-color: var(--color-blue-deep);
+    border: none;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.headset-amber-icon {
+    font-size: 28px;
+    color: var(--color-green-vibrant);
+    margin-bottom: 10px;
+}
+
+.help-card-bg h4 {
+    color: var(--color-green-vibrant);
+    font-size: 15px;
+    margin-bottom: 6px;
+}
+
+.help-card-bg p {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 16px;
+    line-height: 1.4;
+}
+
+.btn-support-amber {
+    width: 100%;
+    background-color: var(--color-green-vibrant);
+    color: var(--color-blue-deep);
+    border: none;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-support-amber:hover {
+    background-color: var(--color-cyan);
+}
+
+.portal-footer {
+    grid-column: span 2;
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid var(--card-border);
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.logo-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-img {
+    width: 45px;
+    height: auto;
+    object-fit: contain; /* Impede que a imagem distorça ou suma */
+}
+/* Forçar a exibição correta da logo do portal */
+.logo-brand .logo-img {
+    display: block !important;
+    width: 45px !important;
+    height: 45px !important;
+    max-width: 45px !important;
+    max-height: 45px !important;
+    object-fit: contain !important;
+}
+
+/* Garante que o container alinhe a logo e o texto lado a lado */
+.logo-brand {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+}

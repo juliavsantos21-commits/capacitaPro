@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CapacitaPro - Portal do Aluno</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="alunos.css">
+</head>
+<body>
+
+    <header class="navbar-portal">
+        <div class="logo-brand" style="display: flex !important; align-items: center !important; gap: 12px !important;">
+            <img src="png.logo.png" alt="CapacitaPro" class="logo-img" style="display: block !important; width: 45px !important; height: 45px !important; min-width: 45px !important; object-fit: contain !important;">
+            
+            <div class="brand-text">
+                <h1>CapacitaPro</h1>
+                <span>TREINAMENTOS PROFISSIONAIS</span>
+            </div>
+        </div>
+        
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="#" class="nav-link active">Início</a></li>
+                <li><a href="cursos.html" class="nav-link">Cursos</a></li>
+                <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+                <li><a href="contato.html" class="nav-link">Contato</a></li>
+            </ul>
+        </nav>
+        
+        <div class="user-actions">
+            <button class="notification-trigger">
+                <i class="fa-regular fa-bell"></i>
+            </button>
+            <div class="user-dropdown">
+                <span class="user-name">Olá, João! <i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="portal-container">
+        
+        <section class="welcome-header">
+            <h2>Bem-vindo(a), João! 👋</h2>
+            <p>Continue aprendendo e desenvolvendo suas habilidades.</p>
+        </section>
+
+        <div class="portal-grid">
+            
+            <div class="left-track">
+                
+                <article class="current-course-card">
+                    <div class="course-summary">
+                        <div class="icon-box-blue">
+                            <i class="fa-solid fa-truck-medical"></i>
+                        </div>
+                        <div class="course-headline">
+                            <span class="sub-label">Seu curso atual</span>
+                            <h3>Primeiros Socorros</h3>
+                            <p class="meta-info">Técnico  •  40 horas</p>
+                        </div>
+                        <div class="course-cta-group">
+                            <button class="btn-portal-solid">Continuar curso</button>
+                            <button class="btn-portal-outline">Ver detalhes</button>
+                        </div>
+                    </div>
+                    
+                    <div class="course-progress-wrapper">
+                        <div class="progress-txt">
+                            <span>Progresso do curso</span>
+                            <strong class="percentage">45%</strong>
+                        </div>
+                        <div class="progress-track-bar">
+                            <div class="progress-fill-bar" style="width: 45%;"></div>
+                        </div>
+                    </div>
+                </article>
+
+                <section class="course-content-block">
+                    <h3 class="block-title">Conteúdo do curso</h3>
+                    
+                    <div class="module-row approved">
+                        <div class="status-indicator">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <span class="module-name">Módulo 1 – Introdução aos Primeiros Socorros</span>
+                        <span class="badge badge-success">Concluído</span>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                    </div>
+
+                    <div class="module-row approved">
+                        <div class="status-indicator">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <span class="module-name">Módulo 2 – Avaliação da Cena e Segurança</span>
+                        <span class="badge badge-success">Concluído</span>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                    </div>
+
+                    <div class="module-row current-playing">
+                        <div class="status-indicator">
+                            <i class="fa-solid fa-circle-play"></i>
+                        </div>
+                        <span class="module-name">Módulo 3 – Suporte Básico de Vida (SBV)</span>
+                        <span class="badge badge-process">Em andamento</span>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                    </div>
+
+                    <div class="module-row rest-locked">
+                        <div class="status-indicator">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                        <span class="module-name">Módulo 4 – Emergências Clínicas</span>
+                        <span class="badge badge-lock">Bloqueado</span>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                    </div>
+
+                    <div class="module-row rest-locked">
+                        <div class="status-indicator">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                        <span class="module-name">Módulo 5 – Traumas e Ferimentos</span>
+                        <span class="badge badge-lock">Bloqueado</span>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                    </div>
+
+                    <div class="module-row rest-locked">
+                        <div class="status-indicator">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                        <span class="module-name">Módulo 6 – Transporte e Promoção de Vítimas</span>
+                        <span class="badge badge-lock">Bloqueado</span>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                    </div>
+
+                    <div class="info-footer-alert">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span>Complete os módulos na ordem para liberar os próximos conteúdos e concluir o curso.</span>
+                    </div>
+                </section>
+            </div>
+
+            <aside class="right-sidebar">
+                
+                <div class="widget-panel">
+                    <div class="widget-header">
+                        <i class="fa-regular fa-calendar-days text-green"></i>
+                        <h4>Próximas aulas</h4>
+                    </div>
+                    <div class="class-schedule-box">
+                        <h5>Módulo 3 – Suporte Básico de Vida (SBV)</h5>
+                        <p class="schedule-time">24/05/2024  •  14:00</p>
+                    </div>
+                    <button class="btn-sidebar-outline-green">Ver calendário</button>
+                </div>
+
+                <div class="widget-panel">
+                    <div class="widget-header">
+                        <h4>Acesso rápido</h4>
+                    </div>
+                    <ul class="quick-nav-list">
+                        <li><a href="#"><i class="fa-style fa-regular fa-bookmark"></i> Meus Cursos <i class="fa-solid fa-chevron-right arrow-end"></i></a></li>
+                        <li><a href="#"><i class="fa-style fa-solid fa-chart-line"></i> Meu Progresso <i class="fa-solid fa-chevron-right arrow-end"></i></a></li>
+                        <li><a href="#"><i class="fa-style fa-regular fa-id-card"></i> Certificados <i class="fa-solid fa-chevron-right arrow-end"></i></a></li>
+                        <li><a href="#"><i class="fa-style fa-regular fa-envelope"></i> Mensagens <i class="fa-solid fa-chevron-right arrow-end"></i></a></li>
+                        <li><a href="#"><i class="fa-style fa-solid fa-gear"></i> Configurações <i class="fa-solid fa-chevron-right arrow-end"></i></a></li>
+                    </ul>
+                </div>
+
+                <div class="widget-panel help-card-bg">
+                    <div class="headset-amber-icon">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h4>Precisa de ajuda?</h4>
+                    <p>Nossa equipe está pronta para ajudar você em sua jornada de aprendizado.</p>
+                    <button class="btn-support-amber">Falar com suporte</button>
+                </div>
+
+            </aside>
+        </div>
+
+        <footer class="portal-footer">
+            <p>© 2024 CapacitaPro. Todos os direitos reservados.</p>
+        </footer>
+    </main>
+
+</body>
+</html>

@@ -1,14 +1,36 @@
 document.addEventListener("DOMContentLoaded", function() {
     console.log("CapacitaPro: Sistema unificado rodando!");
 
-    // --- 1. NAVEGAÇÃO DA NAVBAR ---
+    // --- 1. VALIDAÇÃO DO BOTÃO ENTRAR (Direta e Isolada) ---
+    const btnEntrarTradicional = document.getElementById('btn-entrar-tradicional');
+    if (btnEntrarTradicional) {
+        btnEntrarTradicional.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const campoUsuario = document.getElementById('login-usuario');
+            const campoSenha = document.getElementById('login-senha');
+
+            const usuario = campoUsuario ? campoUsuario.value.trim() : "";
+            const senha = campoSenha ? campoSenha.value.trim() : "";
+
+            if (usuario === "" || senha === "") {
+                alert("⚠️ Erro: Por favor, preencha o E-mail/Matrícula e a Senha para entrar!");
+                return;
+            }
+
+            alert("✅ Login realizado com sucesso! A entrar no Portal do Aluno...");
+            window.location.href = "alunos.html";
+        });
+    }
+
+    // --- 2. NAVEGAÇÃO DA NAVBAR ---
     const linksNav = document.querySelectorAll("nav ul li a");
     linksNav.forEach(link => {
         link.addEventListener("click", function(e) {
             const texto = this.innerText.toLowerCase().trim();
             if (this.getAttribute("href") === "#" || this.getAttribute("href") === "") {
                 e.preventDefault();
-                if (texto === "início") window.location.href = "inicio.html";
+                if (texto === "início" || texto === "inicio") window.location.href = "alunos.html";
                 else if (texto === "cursos") window.location.href = "cursos.html";
                 else if (texto === "sobre") window.location.href = "sobre.html";
                 else if (texto === "contato") window.location.href = "contato.html";
@@ -16,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // --- 2. FILTRO DE CURSOS (SÓ RODA NA PÁGINA DE CURSOS) ---
+    // --- 3. FILTRO DE CURSOS ---
     const btnFiltrar = document.getElementById('btn-filtrar-v2');
     const btnLimpar = document.getElementById('btn-limpar-v2');
 
@@ -57,25 +79,24 @@ document.addEventListener("DOMContentLoaded", function() {
         };
     }
 
-    // --- 3. CLIQUES GERAIS (LOGIN, SAIBA MAIS, ABAS) ---
+    // --- 4. CLIQUES GERAIS (Ignora os botões das páginas de ação para evitar conflitos) ---
     document.addEventListener("click", function(e) {
         const el = e.target.closest("a, button, p, span, .tab, .tab-item");
         if (!el) return;
 
-        const texto = el.innerText ? el.innerText.toLowerCase().trim() : "";
-
-        // BOTÃO ENTRAR (CORREÇÃO PARA O LOGIN)
-        if (texto === "entrar" || el.classList.contains("btn-green-block") || el.classList.contains("btn-outline")) {
-            e.preventDefault(); 
-            if (window.location.href.includes("login.html")) {
-                window.location.href = "inicio.html"; 
-            } else {
-                window.location.href = "login.html";
-            }
+        if (el.id === "btn-entrar-tradicional" || el.id === "btn-finalizar-cadastro" || el.classList.contains("btn-google-login")) {
             return;
         }
 
-        // SAIBA MAIS - PRIMEIROS SOCORROS
+        const texto = el.innerText ? el.innerText.toLowerCase().trim() : "";
+
+        if (texto === "entrar" || el.classList.contains("btn-outline")) {
+            if (window.location.href.includes("login.html")) return;
+            e.preventDefault(); 
+            window.location.href = "login.html";
+            return;
+        }
+
         if (texto === "saiba mais") {
             const cardPai = el.closest(".course-card");
             if (cardPai && cardPai.innerText.includes("Primeiros Socorros")) {
@@ -84,77 +105,54 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
 
-        // NAVEGAÇÃO ENTRE ABAS DO CURSO
         if (texto.includes("sobre o curso")) window.location.href = "cursoPSCRR.html";
         else if (texto.includes("conteúdo")) window.location.href = "cursoPSCRR2.html";
         else if (texto.includes("instrutor")) window.location.href = "cursoPSCRR3.html";
         else if (texto.includes("avaliações")) window.location.href = "cursosPCSRR4.html";
 
-        // CADASTRO
         else if (texto.includes("cadastrar") || texto.includes("matricular") || texto.includes("começar agora")) {
             window.location.href = "cadastro.html";
         }
 
-        // EXPLORAR / CONHECER CURSOS (Ajustado para funcionar na página Sobre)
         else if (texto.includes("explorar") || texto.includes("conhecer cursos") || el.classList.contains("btn-green-large")) {
             window.location.href = "cursos.html";
         }
     });
 
-    // =============================================
-    // API DE LOGIN COM GOOGLE (FIREBASE) - FUNCIONANDO DE VERDADE
-    // =============================================
-    
-    // Verificar se está na página de login
-    if (window.location.href.includes("login.html")) {
-        // Importar Firebase dinamicamente
-        import('https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js')
-            .then(async (firebaseApp) => {
-                const firebaseAuth = await import('https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js');
-                
-                // Configurações do Firebase
-                const firebaseConfig = {
-                    apiKey: "AIzaSyDEI41ng8XESC761m6ym3NiNCm4W9JvWmM",
-                    authDomain: "capacitapro-d8a0c.firebaseapp.com",
-                    projectId: "capacitapro-d8a0c",
-                    storageBucket: "capacitapro-d8a0c.firebasestorage.app",
-                    messagingSenderId: "202290974531",
-                    appId: "1:202290974531:web:e611fbd9fbc196ca6d69f6"
-                };
+    // --- 5. VALIDAÇÃO E BOAS-VINDAS DO CADASTRO ---
+    const btnFinalizarCadastro = document.getElementById('btn-finalizar-cadastro');
+    if (btnFinalizarCadastro) {
+        btnFinalizarCadastro.addEventListener('click', function(e) {
+            e.preventDefault();
 
-                // Inicializar Firebase
-                const app = firebaseApp.initializeApp(firebaseConfig);
-                const auth = firebaseAuth.getAuth(app);
-                const provider = new firebaseAuth.GoogleAuthProvider();
+            // Pega os campos de texto do cadastro pelos novos IDs
+            const campoNome = document.getElementById('cadastro-nome');
+            const campoEmail = document.getElementById('cadastro-email');
+            const campoSenha = document.getElementById('cadastro-senha');
+            const campoConfirmar = document.getElementById('cadastro-confirmar-senha');
 
-                // Adicionar evento ao botão do Google (quando ele existir)
-                const verificarBotao = setInterval(() => {
-                    const btnGoogle = document.querySelector('.btn-google-login');
-                    if (btnGoogle) {
-                        clearInterval(verificarBotao);
-                        btnGoogle.addEventListener('click', async function(e) {
-                            e.preventDefault();
-                            try {
-                                console.log("🔐 Abrindo popup do Google...");
-                                const result = await firebaseAuth.signInWithPopup(auth, provider);
-                                const user = result.user;
-                                alert(`✅ Bem-vindo(a), ${user.displayName}! Login realizado com sucesso.`);
-                                console.log("Usuário logado:", user.email);
-                                window.location.href = "inicio.html";
-                            } catch (error) {
-                                console.error("❌ Erro no login:", error);
-                                if (error.code === "auth/unauthorized-domain") {
-                                    alert("Erro: Domínio não autorizado.\n\nSolução: No Firebase Console, vá em Authentication > Settings > Authorized domains e adicione: localhost");
-                                } else {
-                                    alert("Erro ao fazer login: " + error.message);
-                                }
-                            }
-                        });
-                    }
-                }, 100);
-            })
-            .catch(error => {
-                console.error("Erro ao carregar Firebase:", error);
-            });
+            const nome = campoNome ? campoNome.value.trim() : "";
+            const email = campoEmail ? campoEmail.value.trim() : "";
+            const senha = campoSenha ? campoSenha.value.trim() : "";
+            const confirmar = campoConfirmar ? campoConfirmar.value.trim() : "";
+
+            // 1. Validar se os campos estão em branco
+            if (nome === "" || email === "" || senha === "") {
+                alert("⚠️ Erro: Por favor, preencha o seu Nome, E-mail e Senha para continuar!");
+                return;
+            }
+
+            // 2. Validar se as senhas coincidem
+            if (senha !== confirmar) {
+                alert("⚠️ Erro: A confirmação de senha não coincide com a senha digitada!");
+                return;
+            }
+
+            // 3. Tudo correto! Mensagem incrível de boas-vindas usando o nome digitado
+            alert(`✨ Seja muito bem-vindo(a) à CapacitaPro, ${nome}!\n\nSeu cadastro foi realizado com sucesso e sua matrícula está confirmada. Bons estudos! 🚀`);
+            
+            // 4. Redireciona para o painel principal do aluno
+            window.location.href = "alunos.html";
+        });
     }
 });

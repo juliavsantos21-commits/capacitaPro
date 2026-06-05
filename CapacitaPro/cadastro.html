@@ -173,11 +173,15 @@
                         <textarea class="glass-textarea" rows="4" placeholder="Colar Grade Curricular ou Listar Disciplinas"></textarea>
                     </div>
 
-                    <button type="button" class="btn-upload glass-light"><i class="fas fa-paperclip"></i> Upload de Histórico Escolar</button>
+                    <input type="file" id="arquivo-historico" style="display: none;" accept=".pdf,.doc,.docx,.jpg,.png">
+                    <button type="button" id="btn-upload-gatilho" class="btn-upload glass-light">
+                        <i class="fas fa-paperclip"></i> <span id="texto-upload">Upload de Histórico Escolar</span>
+                    </button>
+                    
                     <p class="info-text">Essas informações são cruciais para nosso algoritmo recomendar cursos que complementem sua formação. Sem isso, não podemos personalizar sua experiência.</p>
 
                     <div class="input-block">
-                        <label>Áreas de Interest Adicionais</label>
+                        <label>Áreas de Interesse Adicionais</label>
                         <input type="text" class="glass-input" placeholder="Ex: Gestão de Projetos, IA, etc.">
                     </div>
                 </div>
@@ -198,8 +202,6 @@
 
         </main>
     </div>
-
-    <script src="cadastro.js"></script>
 
     <script src="script.js"></script>
 </body>

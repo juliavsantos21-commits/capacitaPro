@@ -84,7 +84,8 @@ document.addEventListener("DOMContentLoaded", function() {
         const el = e.target.closest("a, button, p, span, .tab, .tab-item");
         if (!el) return;
 
-        if (el.id === "btn-entrar-tradicional" || el.id === "btn-finalizar-cadastro" || el.classList.contains("btn-google-login")) {
+        // Adicionado o gatilho de upload aqui para evitar cliques errados
+        if (el.id === "btn-entrar-tradicional" || el.id === "btn-finalizar-cadastro" || el.id === "btn-upload-gatilho" || el.classList.contains("btn-google-login")) {
             return;
         }
 
@@ -125,7 +126,6 @@ document.addEventListener("DOMContentLoaded", function() {
         btnFinalizarCadastro.addEventListener('click', function(e) {
             e.preventDefault();
 
-            // Pega os campos de texto do cadastro pelos novos IDs
             const campoNome = document.getElementById('cadastro-nome');
             const campoEmail = document.getElementById('cadastro-email');
             const campoSenha = document.getElementById('cadastro-senha');
@@ -136,23 +136,44 @@ document.addEventListener("DOMContentLoaded", function() {
             const senha = campoSenha ? campoSenha.value.trim() : "";
             const confirmar = campoConfirmar ? campoConfirmar.value.trim() : "";
 
-            // 1. Validar se os campos estão em branco
             if (nome === "" || email === "" || senha === "") {
                 alert("⚠️ Erro: Por favor, preencha o seu Nome, E-mail e Senha para continuar!");
                 return;
             }
 
-            // 2. Validar se as senhas coincidem
             if (senha !== confirmar) {
                 alert("⚠️ Erro: A confirmação de senha não coincide com a senha digitada!");
                 return;
             }
 
-            // 3. Tudo correto! Mensagem incrível de boas-vindas usando o nome digitado
             alert(`✨ Seja muito bem-vindo(a) à CapacitaPro, ${nome}!\n\nSeu cadastro foi realizado com sucesso e sua matrícula está confirmada. Bons estudos! 🚀`);
-            
-            // 4. Redireciona para o painel principal do aluno
             window.location.href = "alunos.html";
+        });
+    }
+
+    // --- 6. NOVO: SISTEMA DE UPLOAD DE HISTÓRICO ESCOLAR ---
+    const arquivoHistorico = document.getElementById('arquivo-historico');
+    const btnUploadGatilho = document.getElementById('btn-upload-gatilho');
+    const textoUpload = document.getElementById('texto-upload');
+
+    if (btnUploadGatilho && arquivoHistorico) {
+        // Aciona a janela de escolha de arquivos do sistema
+        btnUploadGatilho.addEventListener('click', function() {
+            arquivoHistorico.click();
+        });
+
+        // Atualiza dinamicamente o texto do botão com o nome do arquivo selecionado
+        arquivoHistorico.addEventListener('change', function() {
+            if (this.files && this.files.length > 0) {
+                const nomeArquivo = this.files[0].name;
+                textoUpload.innerText = ` ${nomeArquivo} (Selecionado)`;
+                btnUploadGatilho.style.background = "rgba(42, 245, 152, 0.2)"; // Feedback em verde suave
+                btnUploadGatilho.style.borderColor = "#2af598";
+            } else {
+                textoUpload.innerText = "Upload de Histórico Escolar";
+                btnUploadGatilho.style.background = "";
+                btnUploadGatilho.style.borderColor = "";
+            }
         });
     }
 });
